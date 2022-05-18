@@ -22,7 +22,7 @@ export default function Home() {
             {doc}
             <id
               id={i}
-              className="flex bg-green-400 w-3 h-3 rounded-full m-2"
+              className="flex bg-green-400 w-3 h-3 rounded-full m-3"
             ></id>
           </div>
 
