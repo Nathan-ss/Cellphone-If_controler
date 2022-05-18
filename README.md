@@ -1,7 +1,7 @@
 ## Cellphone-Control
 
 ```bash
-Expecificações
+Especificações
 
 #Framawork:NextJs
 #Biblioteca:TailwindCss
