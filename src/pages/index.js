@@ -1,9 +1,39 @@
 import styles from "../styles/Home.module.css";
 import Script from "next/script";
+import { useState } from "react";
 
 export default function Home() {
+  const [title, setTitle] = useState("Aparelhos Conectados");
+
+  const aparelho = {
+    names: ["MaxPro", "Luz-Sala", "TV-Sansung"],
+  };
+
+  function desconect(id) {
+    document.getElementById(id).style.backgroundColor = "red";
+  }
+
+  function inicial() {
+    return aparelho.names?.map((doc, i) => {
+      i++;
+      return (
+        <li key={i}>
+          <div className="flex items-center text-center">
+            {doc}
+            <id
+              id={i}
+              className="flex bg-green-400 w-3 h-3 rounded-full m-2"
+            ></id>
+          </div>
+
+          <button onClick={() => desconect(i)}> desconectar</button>
+        </li>
+      );
+    });
+  }
+
   return (
-    <>
+    <div className="flex">
       <Script
         src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
         integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
@@ -23,7 +53,6 @@ export default function Home() {
         src="https://kit.fontawesome.com/42c8de28f3.js"
         crossorigin="anonymous"
       ></Script>
-
       <div id="content" className={styles.content}>
         <div className={styles.phone}>
           <div className={styles.screen}>
@@ -57,21 +86,14 @@ export default function Home() {
               </button>
             </header>
             <div id="itens" className={styles.itens}>
-              <span>Aparelhos Conectados</span>
+              <span>{title}</span>
               <span className={styles.ul} id="ul">
-                <li>
-                  <div>aparelho</div>
-                </li>
-                <li>aparelho</li>
-                <li>aparelho</li>
-                <li>aparelho</li>
+                {inicial()}
               </span>
             </div>
-
-            <footer id="header" className={styles.header}></footer>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
