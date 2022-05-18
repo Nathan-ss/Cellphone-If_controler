@@ -10,7 +10,17 @@ export default function Home() {
   };
 
   function desconect(id) {
-    document.getElementById(id).style.backgroundColor = "red";
+    console.log(document.getElementById("b" + id).textContent);
+    switch (document.getElementById("b" + id).textContent) {
+      case "Off":
+        document.getElementById(id).style.backgroundColor = "green";
+        document.getElementById("b" + id).textContent = "On";
+
+        break;
+      case "On":
+        document.getElementById(id).style.backgroundColor = "red";
+        document.getElementById("b" + id).textContent = "Off";
+    }
   }
 
   function inicial() {
@@ -18,15 +28,17 @@ export default function Home() {
       i++;
       return (
         <li key={i}>
-          <div className="flex items-center text-center">
+          <div className="flex items-center justify-center">
             {doc}
-            <id
-              id={i}
-              className="flex bg-green-400 w-3 h-3 rounded-full m-3"
-            ></id>
+            <id id={i} className={styles.circle}></id>{" "}
           </div>
-
-          <button onClick={() => desconect(i)}> desconectar</button>
+          <button
+            id={"b" + i}
+            onClick={() => desconect(i)}
+            className="flex box-border p-2 bg-gray-200 rounded-lg w-full h-8 items-center justify-center "
+          >
+            On
+          </button>
         </li>
       );
     });
@@ -81,12 +93,9 @@ export default function Home() {
               <button type="button" className="btn btn-secondary">
                 Configurar Aparelhos
               </button>
-              <button type="button" className="btn btn-secondary">
-                Novo Aparelho
-              </button>
             </header>
             <div id="itens" className={styles.itens}>
-              <span>{title}</span>
+              <strong className="mb-2">{title}</strong>
               <span className={styles.ul} id="ul">
                 {inicial()}
               </span>
